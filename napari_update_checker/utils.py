@@ -61,7 +61,8 @@ def get_latest_version(github: Optional[bool] = None):
         return None
 
     if versions:
-        yield packaging.version.parse(versions[-1])
+        return packaging.version.parse(versions[-1])
+    return None
 
 
 def is_conda_environment(path):

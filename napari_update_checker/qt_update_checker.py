@@ -2,6 +2,7 @@ import os
 import sys
 from contextlib import suppress
 from datetime import date
+from typing import Optional
 
 import packaging.version
 from napari import __version__
@@ -82,11 +83,13 @@ class UpdateChecker(QWidget):
     def check(self):
         self._check_time()
         self._worker = create_worker(get_latest_version)
-        self._worker.yielded.connect(self.show_version_info)
+        self._worker.returned.connect(self.show_version_info)
         self._worker.start()
 
     @ensure_main_thread
-    def show_version_info(self, latest_version: packaging.version.Version):
+    def show_version_info(
+        self, latest_version: Optional[packaging.version.Version] = None
+    ):
         my_version = self._current_version
         remote_version = latest_version
 

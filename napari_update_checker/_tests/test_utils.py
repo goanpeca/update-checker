@@ -30,13 +30,13 @@ def test_conda_forge_releases():
         pass
 
 
-def test_get_latest_version():
+def test_get_latest_version(monkeypatch):
     result = get_latest_version(github=None)
-    assert list(result)
+    assert result
     result = get_latest_version(github=True)
-    assert list(result)
+    assert result
     result = get_latest_version(github=False)
-    assert list(result)
+    assert result
 
 
 def test_is_conda_environment():
