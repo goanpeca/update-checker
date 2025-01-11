@@ -40,6 +40,8 @@ jobs:
           # TODO: PyQt / PySide wheels missing
           - python-version: "3.11"
             platform: "windows-latest"
+          - python-version: "3.11"
+            backend: pyside2
 
     steps:
       - uses: actions/checkout@v4
